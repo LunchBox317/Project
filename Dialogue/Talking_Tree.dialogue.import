@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://b7lo0b3afu7xk"
+path="res://.godot/imported/Talking_Tree.dialogue-4f8d01810dbddfda1d1d6335e4cb9c09.tres"
+
+[deps]
+
+source_file="res://Dialogue/Talking_Tree.dialogue"
+dest_files=["res://.godot/imported/Talking_Tree.dialogue-4f8d01810dbddfda1d1d6335e4cb9c09.tres"]
+
+[params]
+
+defaults=true

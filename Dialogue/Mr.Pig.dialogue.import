@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://dllj1pwmlkoha"
+path="res://.godot/imported/Mr.Pig.dialogue-8ef2b55e281c0440c49a797f86164d7e.tres"
+
+[deps]
+
+source_file="res://Dialogue/Mr.Pig.dialogue"
+dest_files=["res://.godot/imported/Mr.Pig.dialogue-8ef2b55e281c0440c49a797f86164d7e.tres"]
+
+[params]
+
+defaults=true

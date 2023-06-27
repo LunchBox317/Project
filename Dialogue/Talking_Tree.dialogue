@@ -1,0 +1,13 @@
+~ start
+set Global.in_dialogue = true
+
+Tree: So... You've finally returned.
+- You were expecting me?
+	Tree: But of course. You always come back.
+	- I don't understand.
+		Tree: You will in time.
+		Tree: Now you must go down into the underbelly.
+
+set Global.open_hatch = true
+set Global.in_dialogue = false
+=> END

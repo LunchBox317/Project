@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bim4fgx5cgmlv"]
+
+[sub_resource type="Gradient" id="Gradient_rv6k5"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3p2vu"]
+gradient = SubResource("Gradient_rv6k5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gwyfy"]
+particle_flag_disable_z = true
+spread = 90.0
+gravity = Vector3(-10, -10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_3p2vu")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_scbm6"]
+
+[sub_resource type="Gradient" id="Gradient_pyl6e"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c3nrb"]
+gradient = SubResource("Gradient_pyl6e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uirl3"]
+particle_flag_disable_z = true
+gravity = Vector3(10, -10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_c3nrb")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q0jk"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_gwyfy")
+texture = SubResource("PlaceholderTexture2D_scbm6")
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_uirl3")
+texture = SubResource("PlaceholderTexture2D_2q0jk")
+speed_scale = 1.5

@@ -1,0 +1,148 @@
+[gd_scene load_steps=20 format=3 uid="uid://b286yigbbfhic"]
+
+[ext_resource type="Script" path="res://Enemy files/enemy.gd" id="1_dbko2"]
+[ext_resource type="Texture2D" uid="uid://c1ftta26c3vw6" path="res://Art/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet-export-Back.png" id="2_cllw7"]
+[ext_resource type="Texture2D" uid="uid://b07exx6e2o762" path="res://Art/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="2_o54t2"]
+[ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="3_287m4"]
+[ext_resource type="Script" path="res://Character/MyHitBox.gd" id="5_gh2qf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6urg"]
+atlas = ExtResource("2_o54t2")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4wqa"]
+atlas = ExtResource("2_o54t2")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xua8h"]
+atlas = ExtResource("2_o54t2")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65don"]
+atlas = ExtResource("2_o54t2")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5x4"]
+atlas = ExtResource("2_cllw7")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwn6t"]
+atlas = ExtResource("2_cllw7")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t04f5"]
+atlas = ExtResource("2_cllw7")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e7gc"]
+atlas = ExtResource("2_cllw7")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_miuig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6urg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4wqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xua8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65don")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r5x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwn6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t04f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e7gc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b735f"]
+radius = 11.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yilu"]
+
+[sub_resource type="GDScript" id="GDScript_u0tqv"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5bgfa"]
+radius = 74.0068
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tevsx"]
+radius = 10.9972
+height = 31.992
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_dbko2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_miuig")
+animation = &"death"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_b735f")
+
+[node name="MyHurtBox" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_287m4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHurtBox"]
+shape = SubResource("CapsuleShape2D_3yilu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = SubResource("GDScript_u0tqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_5bgfa")
+
+[node name="MyHitBox" type="Area2D" parent="."]
+script = ExtResource("5_gh2qf")
+y_push = -100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHitBox"]
+position = Vector2(-2, 3)
+rotation = -1.5932
+shape = SubResource("CapsuleShape2D_tevsx")
+debug_color = Color(0.992157, 0, 0.258824, 0.419608)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="MyHurtBox" to="MyHurtBox" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

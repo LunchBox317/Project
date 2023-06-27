@@ -1,0 +1,11 @@
+~ start
+set Global.in_dialogue = true
+
+Mr.Pig: [[Hi|Hello|Howdy]], Mitchell. Do you like Demon Slayer?
+- Did you mean Mid Slayer?
+	Mr.Pig: That was a test and you passed.
+- I love Demon Slayer!
+	Mr.Pig: You answered poorly and will pay dearly for this.
+set Global.in_dialogue = false
+
+=> END

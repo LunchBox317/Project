@@ -1,0 +1,13 @@
+~ start
+set Global.in_dialogue = true
+
+???: ...Hello
+- Who are you?
+	BOB: My name... is Bob...
+	- Where am I?
+		BOB: At a cemetary... On outskirts of NewGraft...
+	- End the conversation
+		BOB: Farewell...
+
+set Global.in_dialogue = false
+=> END

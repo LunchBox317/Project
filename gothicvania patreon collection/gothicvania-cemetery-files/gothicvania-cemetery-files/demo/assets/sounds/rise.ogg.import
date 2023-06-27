@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://brpnuusyledbg"
+path="res://.godot/imported/rise.ogg-2b87ac6cf5a802f850d7bc77e455cd2d.oggvorbisstr"
+
+[deps]
+
+source_file="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/demo/assets/sounds/rise.ogg"
+dest_files=["res://.godot/imported/rise.ogg-2b87ac6cf5a802f850d7bc77e455cd2d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

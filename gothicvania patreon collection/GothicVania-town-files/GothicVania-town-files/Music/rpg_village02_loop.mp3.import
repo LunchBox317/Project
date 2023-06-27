@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7o861bgrxp0"
+path="res://.godot/imported/rpg_village02_loop.mp3-52542b40805cae28bf0e25a66963f741.mp3str"
+
+[deps]
+
+source_file="res://gothicvania patreon collection/GothicVania-town-files/GothicVania-town-files/Music/rpg_village02_loop.mp3"
+dest_files=["res://.godot/imported/rpg_village02_loop.mp3-52542b40805cae28bf0e25a66963f741.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

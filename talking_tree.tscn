@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cre3ngvx15aas"]
+
+[ext_resource type="Texture2D" uid="uid://dfl8j25rpbn02" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/sliced-objects/tree-3.png" id="1_nff8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1wde"]
+size = Vector2(50, 267)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Tree-3" type="Sprite2D" parent="."]
+position = Vector2(0, -36)
+texture = ExtResource("1_nff8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -84.5)
+shape = SubResource("RectangleShape2D_l1wde")

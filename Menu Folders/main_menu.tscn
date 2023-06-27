@@ -1,0 +1,386 @@
+[gd_scene load_steps=16 format=3 uid="uid://de4grheft8l3g"]
+
+[ext_resource type="FontFile" uid="uid://dqgrcpimcvspo" path="res://Menu Folders/pixel-maz/pixel_maz.ttf" id="2_n85o0"]
+[ext_resource type="Script" path="res://Menu Folders/main_menu.gd" id="2_udpp7"]
+[ext_resource type="Theme" uid="uid://dyu626dkeq24o" path="res://Menu Folders/pauseMenu.tres" id="3_h8h3h"]
+[ext_resource type="Texture2D" uid="uid://c8v6f7xcbmyhp" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-mountains.png" id="3_vlrjl"]
+[ext_resource type="Script" path="res://Menu Folders/ParallaxBackground.gd" id="4_agwjl"]
+[ext_resource type="Texture2D" uid="uid://bhg76spolmbmy" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-mountains-lights.png" id="4_rhr0k"]
+[ext_resource type="Texture2D" uid="uid://dmw3sl4uuu4r6" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-clouds.png" id="5_wedpb"]
+[ext_resource type="Texture2D" uid="uid://cd28rvg7ojve1" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-forest.png" id="8_2ghr1"]
+[ext_resource type="Texture2D" uid="uid://bxgghr1xt4wnt" path="res://gothicvania patreon collection/GothicVania-town-files/GothicVania-town-files/PNG/environment/layers/middleground.png" id="8_kjwye"]
+[ext_resource type="Texture2D" uid="uid://dflctyp47qbmt" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-town.png" id="9_ndn6j"]
+[ext_resource type="Texture2D" uid="uid://ctd4s12t7qs8j" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/graveyard.png" id="10_hpxsu"]
+[ext_resource type="Texture2D" uid="uid://hldtcmu5eegw" path="res://gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-sky.png" id="11_p4ere"]
+
+[sub_resource type="GDScript" id="GDScript_7gdl4"]
+script/source = "extends CenterContainer
+@export var picture : Sprite2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	picture.position.x -=5
+	if picture.position.x <= 0:
+		picture.position.x = 1184
+
+"
+
+[sub_resource type="Animation" id="Animation_qdltr"]
+resource_name = "up&down"
+length = 3.0
+loop_mode = 1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("H:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(470, 152), Vector2(470, 115), Vector2(470, 152)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("E:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.075, 0.125, 0.175),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(520, 152), Vector2(520, 130), Vector2(520, 152)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("L:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(560, 152), Vector2(560, 130), Vector2(560, 152)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("I:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.225, 0.275, 0.325),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(600, 152), Vector2(600, 130), Vector2(600, 152)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("X:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 152), Vector2(640, 130), Vector2(640, 152)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnyk8"]
+_data = {
+"up&down": SubResource("Animation_qdltr")
+}
+
+[node name="Node" type="Node"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_p4ere")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("picture")]
+script = ExtResource("2_udpp7")
+picture = NodePath("")
+
+[node name="Main" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = 59.0
+offset_right = 53.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -59.0
+offset_right = -53.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Main/CenterContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main/CenterContainer/PanelContainer"]
+visibility_layer = 1023
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("3_h8h3h")
+
+[node name="ButtonPlay" type="Button" parent="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play
+"
+
+[node name="ButtonSettings" type="Button" parent="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="ButtonQuit" type="Button" parent="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer/Main" node_paths=PackedStringArray("picture")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.5002
+offset_top = 257.0
+offset_right = -11.5001
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_7gdl4")
+picture = NodePath("PanelContainer/MarginContainer/VBoxContainer/Sprite2D")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Main/CenterContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main/CenterContainer3/PanelContainer"]
+visibility_layer = 1023
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+position = Vector2(-60, -162)
+scale = Vector2(2.41667, 1.44643)
+texture = ExtResource("4_rhr0k")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+layer = 0
+scroll_ignore_camera_zoom = true
+script = ExtResource("4_agwjl")
+
+[node name="Mountains" type="ParallaxLayer" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1150, 0)
+
+[node name="Night-town-background-mountains3" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Mountains"]
+position = Vector2(924, 494)
+scale = Vector2(5.14128, 1.77232)
+texture = ExtResource("3_vlrjl")
+flip_h = true
+
+[node name="Night-town-background-mountains-lights" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Mountains"]
+position = Vector2(194, 493.5)
+scale = Vector2(4.10417, 1.29911)
+texture = ExtResource("4_rhr0k")
+
+[node name="Night-town-background-mountains-lights2" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Mountains"]
+position = Vector2(533.125, 498.875)
+scale = Vector2(3.04427, 1.73103)
+texture = ExtResource("4_rhr0k")
+flip_h = true
+
+[node name="Clouds" type="ParallaxLayer" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1150, 0)
+
+[node name="Night-town-background-clouds2" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Clouds"]
+position = Vector2(416.125, 472)
+texture = ExtResource("5_wedpb")
+
+[node name="Night-town-background-clouds" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Clouds"]
+position = Vector2(752, 480)
+scale = Vector2(1.40625, 1.20089)
+texture = ExtResource("5_wedpb")
+
+[node name="Night-town-background-clouds3" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Clouds"]
+position = Vector2(832, 480)
+scale = Vector2(1.40625, 1.20089)
+texture = ExtResource("5_wedpb")
+
+[node name="Night-town-background-clouds4" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Clouds"]
+position = Vector2(700, 472)
+texture = ExtResource("5_wedpb")
+
+[node name="Night-town-background-clouds5" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Clouds"]
+position = Vector2(230, 450)
+texture = ExtResource("5_wedpb")
+
+[node name="Town" type="ParallaxLayer" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1150, 0)
+
+[node name="Middleground" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+modulate = Color(0.27451, 0.588235, 0.486275, 1)
+position = Vector2(181, 526)
+scale = Vector2(0.9375, 0.976997)
+texture = ExtResource("8_kjwye")
+
+[node name="Night-town-background-forest3" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(-1309, 21)
+scale = Vector2(2.75, 1.64583)
+texture = ExtResource("8_2ghr1")
+offset = Vector2(720, 345)
+
+[node name="Night-town-background-forest" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(-1778, 27)
+scale = Vector2(3.09375, 1.59375)
+texture = ExtResource("8_2ghr1")
+offset = Vector2(720, 345)
+
+[node name="Night-town-background-forest2" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(-1450, 25)
+scale = Vector2(2.75, 1.64583)
+texture = ExtResource("8_2ghr1")
+offset = Vector2(720, 345)
+
+[node name="Night-town-background-forest4" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(-1142, 23)
+scale = Vector2(2.75, 1.64583)
+texture = ExtResource("8_2ghr1")
+offset = Vector2(720, 345)
+
+[node name="Night-town-background-forest5" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(-972, 32)
+scale = Vector2(2.75, 1.64583)
+texture = ExtResource("8_2ghr1")
+offset = Vector2(720, 345)
+
+[node name="Graveyard" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+modulate = Color(0.470588, 1, 0.717647, 1)
+position = Vector2(863, 647)
+scale = Vector2(0.692057, 0.764228)
+texture = ExtResource("10_hpxsu")
+
+[node name="Graveyard2" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+modulate = Color(0.470588, 1, 0.717647, 1)
+position = Vector2(1054, 644)
+scale = Vector2(0.692057, 0.764228)
+texture = ExtResource("10_hpxsu")
+
+[node name="Night-town-background-town" type="Sprite2D" parent="CanvasLayer/Main/CenterContainer3/PanelContainer/MarginContainer/VBoxContainer/ParallaxBackground/Town"]
+position = Vector2(477, 612)
+scale = Vector2(1.46289, 1.91162)
+texture = ExtResource("9_ndn6j")
+flip_h = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="H" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 152.0
+offset_right = 609.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_n85o0")
+theme_override_font_sizes/font_size = 150
+text = "H
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+autoplay = "up&down"
+libraries = {
+"": SubResource("AnimationLibrary_xnyk8")
+}
+
+[node name="E" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 152.0
+offset_right = 659.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_n85o0")
+theme_override_font_sizes/font_size = 150
+text = "E
+"
+
+[node name="L" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 152.0
+offset_right = 699.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_n85o0")
+theme_override_font_sizes/font_size = 150
+text = "L
+"
+
+[node name="I" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 152.0
+offset_right = 739.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_n85o0")
+theme_override_font_sizes/font_size = 150
+text = "I
+"
+
+[node name="X" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 152.0
+offset_right = 779.0
+offset_bottom = 259.0
+theme_override_fonts/font = ExtResource("2_n85o0")
+theme_override_font_sizes/font_size = 150
+text = "X
+"
+
+[connection signal="focus_entered" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonPlay" to="CanvasLayer" method="_on_button_play_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonPlay" to="CanvasLayer" method="_on_button_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonQuit" to="CanvasLayer" method="_on_button_quit_pressed"]
+[connection signal="toggled" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonQuit" to="CanvasLayer" method="_on_button_quit_toggled"]
