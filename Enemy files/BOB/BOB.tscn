@@ -287,6 +287,7 @@ _data = {
 script = ExtResource("1_w6w7x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_0u3bw")
 animation = &"idle"
 autoplay = "idle"
