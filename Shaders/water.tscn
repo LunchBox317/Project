@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhuxrifcx0cf0"]
+
+[ext_resource type="Shader" path="res://Shaders/water.gdshader" id="1_r17uw"]
+[ext_resource type="Texture2D" uid="uid://capvxtt06628l" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/background.png" id="1_vd348"]
+[ext_resource type="Texture2D" uid="uid://xni12k12vsen" path="res://Art/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_gytu8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o2m3i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3wnwl"]
+seamless = true
+noise = SubResource("FastNoiseLite_o2m3i")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w2r2c"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xjfog"]
+seamless = true
+noise = SubResource("FastNoiseLite_w2r2c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2xig"]
+shader = ExtResource("1_r17uw")
+shader_parameter/scroll = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.05, -0.05)
+shader_parameter/distortion_strength = 0.18
+shader_parameter/top_color = Color(1, 1, 1, 1)
+shader_parameter/tone_color = Color(0, 0, 1, 1)
+shader_parameter/light_start = 0.362
+shader_parameter/light_end = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_3wnwl")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_xjfog")
+
+[node name="water" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(528, 248)
+scale = Vector2(3.22917, 2.3125)
+texture = ExtResource("1_vd348")
+
+[node name="water shader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c2xig")
+position = Vector2(587, 218)
+texture = ExtResource("2_gytu8")
