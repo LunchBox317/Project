@@ -38,7 +38,7 @@ func _physics_process(delta):
 	if Global.in_dialogue == true:
 		return
 	else:
-		if direction.x: #!= 0 && animated_sprite.animation != "jump-end":
+		if direction.x:
 			velocity.x = direction.x * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)

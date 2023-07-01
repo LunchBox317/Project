@@ -14,13 +14,15 @@ var jump : float = -300.0
 @export var animation: AnimatedSprite2D
 @export var interact_circle : Area2D 
 @onready var swing_cooldown : Timer = $SwingCooldown
+@export var fall_timer : Timer 
 
 var health = 10
-
+var is_falling = false
 var hasSwung = false
 var firstAttack = true
 var lookingLeft = false
 var lookingRight = true
+var is_crouching = false
 
 func state_input(event): 
 	if Global.in_dialogue == true:
@@ -30,16 +32,18 @@ func state_input(event):
 			jumping()
 		if(event.is_action_pressed("attack")):
 			if hasSwung == false:
-				attack()	
+				if is_crouching:
+					crouch_attack()
+				else:
+					attack()	
 		if(event.is_action_pressed(("interact"))):
 			interact()
 		if(event.is_action_pressed("crouch")):
 			crouch()
-#			if(event.is_action_pressed("attack")): NEED TO ADD CROUCH STATE I GUESS
-#				crouch_attack()
+			is_crouching = true
 		if(event.is_action_released("crouch")):
 			playback.travel("run")
-		
+			is_crouching = false
 	
 		
 		
@@ -51,9 +55,11 @@ func jumping():
 	timer.stop()
 	hasSwung = false
 		
-#func state_process(delta): 
-#	if(!character.is_on_floor()):
-#		nextState = fallState
+func state_process(delta): 
+	if(!character.is_on_floor()):
+		nextState = fallState
+	
+
 
 func crouch():
 	playback.travel("crouch")
@@ -124,3 +130,5 @@ func _on_attack_swing_timeout():
 func _on_swing_cooldown_timeout():
 	hasSwung = false
 	swing_cooldown.stop()
+
+
