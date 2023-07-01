@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhuxrifcx0cf0"]
+[gd_scene load_steps=9 format=3 uid="uid://c53ujn1fr4g8g"]
 
 [ext_resource type="Shader" path="res://Shaders/water.gdshader" id="1_r17uw"]
 [ext_resource type="Texture2D" uid="uid://capvxtt06628l" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/background.png" id="1_vd348"]
