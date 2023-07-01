@@ -27,7 +27,6 @@ func on_exit():
 func double_jump():
 	if hasDoubleJumped == false:
 		character.velocity.y = doubleJump
-		#animated_sprite.play("double-jump")
 		hasDoubleJumped = true
 		playback.travel("double_jump")
 	else: 

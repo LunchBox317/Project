@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://du733rtagwb7i"]
+[gd_scene load_steps=121 format=3 uid="uid://du733rtagwb7i"]
 
 [ext_resource type="Shader" path="res://Character/flashHit.gdshader" id="1_e8pbs"]
 [ext_resource type="Script" path="res://Character/player.gd" id="1_ttswv"]
@@ -109,6 +109,14 @@ region = Rect2(160, 0, 80, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dweut"]
 atlas = ExtResource("4_inkt3")
 region = Rect2(240, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ybsq"]
+atlas = ExtResource("4_4t8ve")
+region = Rect2(183, 0, 61, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynnvb"]
+atlas = ExtResource("4_4t8ve")
+region = Rect2(244, 0, 61, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg7aq"]
 atlas = ExtResource("3_ppti3")
@@ -304,6 +312,17 @@ animations = [{
 "loop": false,
 "name": &"crouch_slash",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ybsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynnvb")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -564,6 +583,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"crouch_slash"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9, 8)]
+}
 
 [sub_resource type="Animation" id="Animation_lu4w7"]
 resource_name = "hurt"
@@ -601,13 +632,13 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0.0, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_2ycnw"]
 resource_name = "idle"
-length = 0.7
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -759,6 +790,34 @@ tracks/2/keys = {
 "values": [Vector2(-5, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_7uqlv"]
+resource_name = "falling"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"falling"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1813"]
 _data = {
 "RESET": SubResource("Animation_a6vth"),
@@ -766,6 +825,7 @@ _data = {
 "attack_2": SubResource("Animation_6j2mr"),
 "crouch": SubResource("Animation_sgr80"),
 "crouch_slash": SubResource("Animation_piwv0"),
+"falling": SubResource("Animation_7uqlv"),
 "hurt": SubResource("Animation_lu4w7"),
 "idle": SubResource("Animation_2ycnw"),
 "jump": SubResource("Animation_65imv"),
@@ -785,6 +845,9 @@ animation = &"crouch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fusyg"]
 animation = &"crouch_slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vs0dx"]
+animation = &"falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8b1u"]
 animation = &"hurt"
@@ -852,6 +915,10 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_37cpk"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p22ig"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ninnp"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qum76"]
 states/attack_1/node = SubResource("AnimationNodeAnimation_hv705")
 states/attack_1/position = Vector2(486.074, 146.333)
@@ -861,18 +928,20 @@ states/crouch/node = SubResource("AnimationNodeAnimation_xc44i")
 states/crouch/position = Vector2(512, 29.5555)
 states/crouch_slash/node = SubResource("AnimationNodeAnimation_fusyg")
 states/crouch_slash/position = Vector2(639.667, -20.7778)
+states/falling/node = SubResource("AnimationNodeAnimation_vs0dx")
+states/falling/position = Vector2(166.667, -38.444)
 states/hurt/node = SubResource("AnimationNodeAnimation_d8b1u")
 states/hurt/position = Vector2(323.333, 165.778)
 states/jump/node = SubResource("AnimationNodeAnimation_xc77k")
 states/jump/position = Vector2(370.222, -12.6667)
 states/jump_attack/node = SubResource("AnimationNodeAnimation_uj84u")
-states/jump_attack/position = Vector2(247.333, -35)
+states/jump_attack/position = Vector2(252.222, -101)
 states/jump_end/node = SubResource("AnimationNodeAnimation_sqb5g")
 states/jump_end/position = Vector2(253, 21.6667)
 states/run/node = SubResource("AnimationNodeBlendSpace1D_aoxkr")
 states/run/position = Vector2(371.333, 98.6667)
-transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_244qx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_mj56f"), "jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_s6tuc"), "jump_end", "run", SubResource("AnimationNodeStateMachineTransition_kgwd0"), "run", "attack_1", SubResource("AnimationNodeStateMachineTransition_vdyur"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_i4wyf"), "attack_2", "attack_1", SubResource("AnimationNodeStateMachineTransition_buptr"), "jump", "jump_attack", SubResource("AnimationNodeStateMachineTransition_wftnx"), "jump_attack", "jump_end", SubResource("AnimationNodeStateMachineTransition_upmfq"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_o0lmt"), "hurt", "run", SubResource("AnimationNodeStateMachineTransition_8l6yh"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_k8d6p"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_orget"), "crouch", "crouch_slash", SubResource("AnimationNodeStateMachineTransition_37cpk")]
-graph_offset = Vector2(187, -92.444)
+transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_244qx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_mj56f"), "jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_s6tuc"), "jump_end", "run", SubResource("AnimationNodeStateMachineTransition_kgwd0"), "run", "attack_1", SubResource("AnimationNodeStateMachineTransition_vdyur"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_i4wyf"), "attack_2", "attack_1", SubResource("AnimationNodeStateMachineTransition_buptr"), "jump", "jump_attack", SubResource("AnimationNodeStateMachineTransition_wftnx"), "jump_attack", "jump_end", SubResource("AnimationNodeStateMachineTransition_upmfq"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_o0lmt"), "hurt", "run", SubResource("AnimationNodeStateMachineTransition_8l6yh"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_k8d6p"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_orget"), "crouch", "crouch_slash", SubResource("AnimationNodeStateMachineTransition_37cpk"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_p22ig"), "falling", "jump_end", SubResource("AnimationNodeStateMachineTransition_ninnp")]
+graph_offset = Vector2(-11, -35.444)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_x11nf"]
 
@@ -904,7 +973,9 @@ debug_color = Color(0.0980392, 0.564706, 0.854902, 0.419608)
 material = SubResource("ShaderMaterial_g63pl")
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_a2n8f")
-animation = &"crouch_slash"
+animation = &"crouch"
+frame = 2
+offset = Vector2(9, 8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
@@ -924,7 +995,7 @@ current_state = NodePath("Ground")
 character = NodePath("..")
 animationTree = NodePath("../AnimationTree")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("guy", "airState", "fallState", "timer", "attack_timer", "hit_box", "animation", "interact_circle")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("guy", "airState", "fallState", "timer", "attack_timer", "hit_box", "animation", "interact_circle", "fall_timer")]
 script = ExtResource("9_jp4l3")
 guy = NodePath("../..")
 airState = NodePath("../Air")
@@ -934,6 +1005,7 @@ attack_timer = NodePath("AttackSwing")
 hit_box = NodePath("../../MyHitBox/CollisionShape2D")
 animation = NodePath("../../AnimatedSprite2D")
 interact_circle = NodePath("../../Interact_Circle")
+fall_timer = NodePath("../Falling/FallTimer")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Ground"]
 wait_time = 2.0
@@ -956,6 +1028,9 @@ script = ExtResource("11_nmw03")
 script = ExtResource("12_v3gf4")
 fallState = NodePath(".")
 groundState = NodePath("../Ground")
+
+[node name="FallTimer" type="Timer" parent="CharacterStateMachine/Falling"]
+one_shot = true
 
 [node name="MyHitBox" type="Area2D" parent="."]
 collision_layer = 2
@@ -994,5 +1069,6 @@ shape = SubResource("CapsuleShape2D_q0l5b")
 [connection signal="timeout" from="CharacterStateMachine/Ground/AttackSwing" to="CharacterStateMachine/Ground" method="_on_attack_swing_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Ground/AttackSwing" to="CharacterStateMachine/Air" method="_on_attack_swing_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Ground/SwingCooldown" to="CharacterStateMachine/Ground" method="_on_swing_cooldown_timeout"]
+[connection signal="timeout" from="CharacterStateMachine/Falling/FallTimer" to="CharacterStateMachine/Falling" method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="MyHurtBox" to="MyHurtBox" method="_on_area_entered"]
