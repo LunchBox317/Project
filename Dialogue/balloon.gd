@@ -85,7 +85,7 @@ var dialogue_line: DialogueLine:
 func _ready() -> void:
 	response_template.hide()
 	balloon.hide()
-	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x
+	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x -200
 	
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -160,7 +160,7 @@ func handle_resize() -> void:
 		call_deferred("handle_resize")
 		return
 		
-	balloon.custom_minimum_size.y = margin.size.y
+	balloon.custom_minimum_size.y = margin.size.y -300
 	# Force a resize on only the height
 	balloon.size.y = 0
 	var viewport_size = balloon.get_viewport_rect().size

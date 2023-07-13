@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bim4fgx5cgmlv"]
+[gd_scene load_steps=12 format=3 uid="uid://bim4fgx5cgmlv"]
 
 [sub_resource type="Gradient" id="Gradient_rv6k5"]
 colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 0)
@@ -33,6 +33,68 @@ color_ramp = SubResource("GradientTexture1D_c3nrb")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q0jk"]
 
+[sub_resource type="Animation" id="Animation_1mvpe"]
+resource_name = "new_animation"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.85, 0.91),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.85, 0.91),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_j7k4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_01qfs"]
+_data = {
+"RESET": SubResource("Animation_j7k4x"),
+"new_animation": SubResource("Animation_1mvpe")
+}
+
 [node name="Node2D" type="Node2D"]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -46,3 +108,9 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_uirl3")
 texture = SubResource("PlaceholderTexture2D_2q0jk")
 speed_scale = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_01qfs")
+}

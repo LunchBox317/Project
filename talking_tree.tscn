@@ -1,11 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cre3ngvx15aas"]
+[gd_scene load_steps=10 format=3 uid="uid://cre3ngvx15aas"]
 
+[ext_resource type="Script" path="res://talking_tree.gd" id="1_er4nu"]
 [ext_resource type="Texture2D" uid="uid://dfl8j25rpbn02" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/sliced-objects/tree-3.png" id="1_nff8b"]
+[ext_resource type="Shader" path="res://Enemy files/BOB/E.gdshader" id="3_5j5fs"]
+[ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="4_2plk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1wde"]
 size = Vector2(50, 267)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjk0"]
+shader = ExtResource("3_5j5fs")
+
+[sub_resource type="Animation" id="Animation_poxaj"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -33), Vector2(-1, -30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gkh3w"]
+_data = {
+"Move": SubResource("Animation_poxaj")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h17g6"]
+radius = 11.0396
+height = 174.509
+
 [node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_er4nu")
 
 [node name="Tree-3" type="Sprite2D" parent="."]
 position = Vector2(0, -36)
@@ -14,3 +46,28 @@ texture = ExtResource("1_nff8b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -84.5)
 shape = SubResource("RectangleShape2D_l1wde")
+
+[node name="EButton" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_xhjk0")
+position = Vector2(27, -67)
+scale = Vector2(0.178571, 0.17648)
+texture = ExtResource("4_2plk8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EButton"]
+autoplay = "Move"
+libraries = {
+"": SubResource("AnimationLibrary_gkh3w")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-39, -30)
+rotation = -3.00066
+shape = SubResource("CapsuleShape2D_h17g6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

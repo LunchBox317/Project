@@ -40,10 +40,12 @@ func _on_area_2d_body_exited(body):
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
-		$MyHitBox.visible = false
+		$MyHurtBox.queue_free()
+		$MyHitBox.queue_free()
 		player_chase = false
 		$AnimatedSprite2D.play("death")
-		
+		gravity = 0
+		$CollisionShape2D.queue_free()
 	
 
 
@@ -52,3 +54,6 @@ func _on_animated_sprite_2d_animation_finished():
 	queue_free()
 
 
+
+
+	

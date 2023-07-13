@@ -1,10 +1,12 @@
-[gd_scene load_steps=37 format=3 uid="uid://kj0gr70ohh4u"]
+[gd_scene load_steps=42 format=3 uid="uid://kj0gr70ohh4u"]
 
 [ext_resource type="Script" path="res://Enemy files/BOB/BOB.gd" id="1_w6w7x"]
 [ext_resource type="Texture2D" uid="uid://bfvcb3pivsjh2" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-idle.png" id="2_4d3t8"]
 [ext_resource type="Texture2D" uid="uid://dx0vjt1u2xuwk" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-appears.png" id="3_ars1w"]
 [ext_resource type="Texture2D" uid="uid://ownibuit5w7m" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png" id="4_7we3j"]
 [ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="4_47rp1"]
+[ext_resource type="Shader" path="res://Enemy files/BOB/E.gdshader" id="6_816ji"]
+[ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="7_457st"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxpx3"]
 atlas = ExtResource("2_4d3t8")
@@ -283,6 +285,30 @@ _data = {
 "spawn_out": SubResource("Animation_b7l7f")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5irg"]
+shader = ExtResource("6_816ji")
+
+[sub_resource type="Animation" id="Animation_poxaj"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -33), Vector2(-1, -30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gkh3w"]
+_data = {
+"Move": SubResource("Animation_poxaj")
+}
+
 [node name="BOB" type="CharacterBody2D"]
 script = ExtResource("1_w6w7x")
 
@@ -318,6 +344,19 @@ debug_color = Color(0, 0.643137, 0.309804, 0.419608)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ix5kg")
+}
+
+[node name="EButton" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_h5irg")
+position = Vector2(-3, -30.0877)
+scale = Vector2(0.178571, 0.17648)
+texture = ExtResource("7_457st")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EButton"]
+autoplay = "Move"
+libraries = {
+"": SubResource("AnimationLibrary_gkh3w")
 }
 
 [connection signal="area_entered" from="MyHurtBox" to="MyHurtBox" method="_on_area_entered"]

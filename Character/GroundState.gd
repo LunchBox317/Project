@@ -70,6 +70,7 @@ func crouch_attack():
 func interact():
 	var actionables = interact_circle.get_overlapping_areas()
 	if actionables.size() > 0:
+		character.direction.x = -1
 		actionables[0].action()
 		return
 			

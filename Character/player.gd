@@ -20,7 +20,6 @@ var health: int = 10
 func _ready():
 	animation_tree.active = true
 	
-	
 
 
 func _physics_process(delta):
@@ -36,7 +35,8 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "up", "down")
 	if Global.in_dialogue == true:
-		return
+		direction.x = 0
+		velocity.x = 0
 	else:
 		if direction.x:
 			velocity.x = direction.x * speed
@@ -74,6 +74,7 @@ func changeDirectionLeft():
 		lookingRight = false
 	elif lookingLeft == true:
 		pass
+		
 func changeDirectionRight():
 	if lookingRight == true:
 		pass
@@ -81,11 +82,7 @@ func changeDirectionRight():
 		guy.scale.x = -1
 		lookingRight = true
 		lookingLeft = false
-				
 
-
-
-		
 func take_Ypush(push):
 	velocity.y = push
 	
