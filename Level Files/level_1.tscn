@@ -3588,6 +3588,7 @@ layer_0/tile_data = PackedInt32Array(524339, 131072, 12, 524340, 131072, 3, 4588
 [node name="Player" parent="." instance=ExtResource("2_ejid0")]
 position = Vector2(152, 91)
 
+
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("animation")]
 texture_filter = 2
 texture_repeat = 1

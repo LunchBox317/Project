@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=8 format=3 uid="uid://c53ujn1fr4g8g"]
+
 
 [ext_resource type="Shader" path="res://Shaders/water.gdshader" id="1_r17uw"]
 [ext_resource type="Texture2D" uid="uid://xni12k12vsen" path="res://Art/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_gytu8"]
