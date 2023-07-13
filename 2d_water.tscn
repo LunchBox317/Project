@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw37ao7fwjcwa"]
+
+[ext_resource type="Shader" path="res://2d_water.gdshader" id="1_csnq1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xte15"]
+shader = ExtResource("1_csnq1")
+
+[sub_resource type="Gradient" id="Gradient_oputs"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_38ac3"]
+gradient = SubResource("Gradient_oputs")
+
+[node name="Sprite2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_xte15")
+position = Vector2(682, 336)
+scale = Vector2(1.98828, 416.5)
+texture = SubResource("GradientTexture1D_38ac3")

@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-
-@onready var balloon: ColorRect = $Balloon
+@onready var response_balloon : NinePatchRect = $ResponseBalloon
+@onready var balloon: NinePatchRect = $Balloon
 @onready var margin: MarginContainer = $Balloon/Margin
 @onready var character_label: RichTextLabel = $Balloon/Margin/VBox/CharacterLabel
 @onready var dialogue_label := $Balloon/Margin/VBox/DialogueLabel
-@onready var responses_menu: VBoxContainer = $Balloon/Margin/VBox/Responses
+@onready var responses_menu: VBoxContainer = %Responses
 @onready var response_template: RichTextLabel = %ResponseTemplate
 
 ## The dialogue resource
@@ -33,6 +33,7 @@ var dialogue_line: DialogueLine:
 		for child in responses_menu.get_children():
 			responses_menu.remove_child(child)
 			child.queue_free()
+			
 		
 		dialogue_line = next_dialogue_line
 		
@@ -45,6 +46,7 @@ var dialogue_line: DialogueLine:
 
 		# Show any responses we have
 		responses_menu.modulate.a = 0
+		response_balloon.modulate.a = 0
 		if dialogue_line.responses.size() > 0:
 			for response in dialogue_line.responses:
 				# Duplicate the template so we can grab the fonts, sizing, etc
@@ -55,7 +57,10 @@ var dialogue_line: DialogueLine:
 					item.modulate.a = 0.4
 				item.text = response.text
 				item.show()
+				item.size.x = 20
 				responses_menu.add_child(item)
+				
+				
 		
 		# Show our balloon
 		balloon.show()
@@ -69,6 +74,8 @@ var dialogue_line: DialogueLine:
 		# Wait for input
 		if dialogue_line.responses.size() > 0:
 			responses_menu.modulate.a = 1
+			response_balloon.modulate.a = 1
+			
 			configure_menu()
 		elif dialogue_line.time != null:
 			var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
@@ -83,9 +90,10 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
+#	response_balloon.hide()
 	response_template.hide()
 	balloon.hide()
-	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x
+	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x - 200
 	
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -160,11 +168,11 @@ func handle_resize() -> void:
 		call_deferred("handle_resize")
 		return
 		
-	balloon.custom_minimum_size.y = margin.size.y
+	balloon.custom_minimum_size.y = margin.size.y -300
 	# Force a resize on only the height
 	balloon.size.y = 0
 	var viewport_size = balloon.get_viewport_rect().size
-	balloon.global_position = Vector2((viewport_size.x - balloon.size.x) * 0.5, viewport_size.y - balloon.size.y)
+	balloon.global_position = Vector2((viewport_size.x - balloon.size.x) * 0.5, viewport_size.y - balloon.size.y - 10)
 
 
 ### Signals

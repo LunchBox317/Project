@@ -596,6 +596,36 @@ tracks/2/keys = {
 "values": [Vector2(9, 8)]
 }
 
+
+[sub_resource type="Animation" id="Animation_7uqlv"]
+resource_name = "falling"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"falling"]
+}
+
+
 [sub_resource type="Animation" id="Animation_lu4w7"]
 resource_name = "hurt"
 length = 0.3
@@ -987,7 +1017,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_qum76")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_x11nf")
-parameters/run/blend_position = -0.000667095
+parameters/run/blend_position = 0.0
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animationTree")]
 script = ExtResource("8_mwrah")
