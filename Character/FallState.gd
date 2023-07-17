@@ -8,7 +8,7 @@ class_name FallState
 var timercountdown = false
 
 func on_enter():
-		fall_timer.start(.2)
+		fall_timer.start(.3)
 		timercountdown = false
 		
 func on_exit():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://du733rtagwb7i"]
+[gd_scene load_steps=120 format=3 uid="uid://du733rtagwb7i"]
 
 [ext_resource type="Shader" path="res://Character/flashHit.gdshader" id="1_e8pbs"]
 [ext_resource type="Script" path="res://Character/player.gd" id="1_ttswv"]
@@ -943,8 +943,6 @@ states/run/position = Vector2(371.333, 98.6667)
 transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_244qx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_mj56f"), "jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_s6tuc"), "jump_end", "run", SubResource("AnimationNodeStateMachineTransition_kgwd0"), "run", "attack_1", SubResource("AnimationNodeStateMachineTransition_vdyur"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_i4wyf"), "attack_2", "attack_1", SubResource("AnimationNodeStateMachineTransition_buptr"), "jump", "jump_attack", SubResource("AnimationNodeStateMachineTransition_wftnx"), "jump_attack", "jump_end", SubResource("AnimationNodeStateMachineTransition_upmfq"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_o0lmt"), "hurt", "run", SubResource("AnimationNodeStateMachineTransition_8l6yh"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_k8d6p"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_orget"), "crouch", "crouch_slash", SubResource("AnimationNodeStateMachineTransition_37cpk"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_p22ig"), "falling", "jump_end", SubResource("AnimationNodeStateMachineTransition_ninnp")]
 graph_offset = Vector2(-11, -35.444)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_x11nf"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8n7"]
 size = Vector2(18, 47)
 
@@ -986,7 +984,6 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_qum76")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_x11nf")
 parameters/run/blend_position = 0.0
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animationTree")]

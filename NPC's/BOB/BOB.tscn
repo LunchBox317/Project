@@ -1,91 +1,91 @@
 [gd_scene load_steps=42 format=3 uid="uid://kj0gr70ohh4u"]
 
-[ext_resource type="Script" path="res://Enemy files/BOB/BOB.gd" id="1_w6w7x"]
-[ext_resource type="Texture2D" uid="uid://bfvcb3pivsjh2" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-idle.png" id="2_4d3t8"]
-[ext_resource type="Texture2D" uid="uid://dx0vjt1u2xuwk" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-appears.png" id="3_ars1w"]
-[ext_resource type="Texture2D" uid="uid://ownibuit5w7m" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png" id="4_7we3j"]
-[ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="4_47rp1"]
-[ext_resource type="Shader" path="res://Enemy files/BOB/E.gdshader" id="6_816ji"]
-[ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="7_457st"]
+[ext_resource type="Script" path="res://NPC's/BOB/BOB.gd" id="1_ud3ox"]
+[ext_resource type="Texture2D" uid="uid://bfvcb3pivsjh2" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-idle.png" id="2_hrphg"]
+[ext_resource type="Texture2D" uid="uid://dx0vjt1u2xuwk" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-appears.png" id="3_a30ca"]
+[ext_resource type="Texture2D" uid="uid://ownibuit5w7m" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png" id="4_8ws4o"]
+[ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="5_le2r7"]
+[ext_resource type="Shader" path="res://NPC's/BOB/E.gdshader" id="6_8vrsd"]
+[ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="7_46bk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxpx3"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(0, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i2rt2"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(64, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18wv2"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(128, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i20ny"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(192, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yko7c"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(256, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4trr"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(320, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2l5h"]
-atlas = ExtResource("2_4d3t8")
+atlas = ExtResource("2_hrphg")
 region = Rect2(384, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tori"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(0, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bjxf"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(64, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b1av"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(128, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xyvgc"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(192, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fay6e"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(256, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5p3j"]
-atlas = ExtResource("3_ars1w")
+atlas = ExtResource("3_a30ca")
 region = Rect2(320, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hw4bd"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fh43f"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_658ar"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgc2n"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hyt7"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p552g"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvyrb"]
-atlas = ExtResource("4_7we3j")
+atlas = ExtResource("4_8ws4o")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0u3bw"]
@@ -286,7 +286,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5irg"]
-shader = ExtResource("6_816ji")
+shader = ExtResource("6_8vrsd")
 
 [sub_resource type="Animation" id="Animation_poxaj"]
 resource_name = "Move"
@@ -310,7 +310,7 @@ _data = {
 }
 
 [node name="BOB" type="CharacterBody2D"]
-script = ExtResource("1_w6w7x")
+script = ExtResource("1_ud3ox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -326,7 +326,7 @@ texture = SubResource("PlaceholderTexture2D_2hyil")
 [node name="MyHurtBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("4_47rp1")
+script = ExtResource("5_le2r7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MyHurtBox"]
 light_mask = 0
@@ -351,7 +351,7 @@ visible = false
 material = SubResource("ShaderMaterial_h5irg")
 position = Vector2(-3, -30.0877)
 scale = Vector2(0.178571, 0.17648)
-texture = ExtResource("7_457st")
+texture = ExtResource("7_46bk0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EButton"]
 autoplay = "Move"
