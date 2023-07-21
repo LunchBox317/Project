@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://NPC's/Talking Tree/talking_tree.gd" id="1_er4nu"]
 [ext_resource type="Texture2D" uid="uid://dfl8j25rpbn02" path="res://gothicvania patreon collection/gothicvania-cemetery-files/gothicvania-cemetery-files/PNG/Environment/sliced-objects/tree-3.png" id="1_nff8b"]
-[ext_resource type="Shader" path="res://Enemy files/BOB/E.gdshader" id="3_5j5fs"]
+[ext_resource type="Shader" path="res://Shaders/E.gdshader" id="3_ox6fe"]
 [ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="4_2plk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1wde"]
 size = Vector2(50, 267)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjk0"]
-shader = ExtResource("3_5j5fs")
+shader = ExtResource("3_ox6fe")
 
 [sub_resource type="Animation" id="Animation_poxaj"]
 resource_name = "Move"

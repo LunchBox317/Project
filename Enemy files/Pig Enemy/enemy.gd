@@ -41,11 +41,12 @@ func take_damage(amount):
 	health -= amount
 	if health <= 0:
 		$MyHurtBox.queue_free()
-		$MyHitBox.queue_free()
+		$MyHitBox.monitoring = false
 		player_chase = false
 		$AnimatedSprite2D.play("death")
 		gravity = 0
-		$CollisionShape2D.queue_free()
+		$Area2D.queue_free()
+		$CollisionShape2D.disabled = true
 	
 
 

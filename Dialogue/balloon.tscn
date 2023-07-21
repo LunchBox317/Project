@@ -66,6 +66,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_cqr56")
 theme_override_font_sizes/normal_font_size = 40
 text = "Dialogue"
+skip_action = "jump"
 
 [node name="ResponseTemplate" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
@@ -113,5 +114,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
 
-[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_2_gui_input"]
+[connection signal="gui_input" from="Balloon/Margin" to="." method="_on_balloon_gui_input"]
 [connection signal="resized" from="Balloon/Margin" to="." method="_on_margin_resized"]

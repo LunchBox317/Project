@@ -26,7 +26,8 @@ var is_crouching = false
 
 func state_input(event): 
 	if Global.in_dialogue == true:
-		return
+#		return
+		pass
 	else:
 		if(event.is_action_pressed("jump")):  
 			jumping()

@@ -72,6 +72,7 @@ func changeDirectionLeft():
 		guy.scale.x = -1
 		lookingLeft = true
 		lookingRight = false
+		$MyPlayerHitBox.x_push = -1000
 	elif lookingLeft == true:
 		pass
 		
@@ -80,6 +81,7 @@ func changeDirectionRight():
 		pass
 	elif lookingRight == false:
 		guy.scale.x = -1
+		$MyPlayerHitBox.x_push = 1000
 		lookingRight = true
 		lookingLeft = false
 
@@ -93,3 +95,9 @@ func take_Xpush(push):
 
 
 
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "hurt":
+		pass

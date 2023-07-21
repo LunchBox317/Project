@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dx0vjt1u2xuwk" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-appears.png" id="3_a30ca"]
 [ext_resource type="Texture2D" uid="uid://ownibuit5w7m" path="res://gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png" id="4_8ws4o"]
 [ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="5_le2r7"]
-[ext_resource type="Shader" path="res://NPC's/BOB/E.gdshader" id="6_8vrsd"]
+[ext_resource type="Shader" path="res://Shaders/E.gdshader" id="6_37bkf"]
 [ext_resource type="Texture2D" uid="uid://bho36y5qu32xg" path="res://Art/Screenshot from 2023-07-12 22-15-11.png" id="7_46bk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxpx3"]
@@ -286,7 +286,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5irg"]
-shader = ExtResource("6_8vrsd")
+shader = ExtResource("6_37bkf")
 
 [sub_resource type="Animation" id="Animation_poxaj"]
 resource_name = "Move"

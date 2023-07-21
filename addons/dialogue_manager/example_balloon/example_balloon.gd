@@ -90,7 +90,6 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
-#	response_balloon.hide()
 	response_template.hide()
 	balloon.hide()
 	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x - 200
@@ -199,22 +198,36 @@ func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		next(dialogue_line.responses[item.get_index()].next_id)
-	elif event.is_action_pressed("ui_accept") and item in get_responses():
+	elif event.is_action_pressed("interact") and item in get_responses():
 		next(dialogue_line.responses[item.get_index()].next_id)
+	
 
 
 func _on_balloon_gui_input(event: InputEvent) -> void:
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return
+		
 
 	# When there are no response options the balloon itself is the clickable thing	
 	get_viewport().set_input_as_handled()
-	
+	#SANJI
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		next(dialogue_line.next_id)
-	elif event.is_action_pressed("ui_accept") and get_viewport().gui_get_focus_owner() == balloon:
-		next(dialogue_line.next_id)
-
+		print(get_viewport().gui_get_focus_owner())
+	
 
 func _on_margin_resized() -> void:
 	handle_resize()
+
+
+func _on_balloon_2_gui_input(event):
+	if not is_waiting_for_input: return
+	if dialogue_line.responses.size() > 0: return
+		
+
+	# When there are no response options the balloon itself is the clickable thing	
+	get_viewport().set_input_as_handled()
+	if event.is_action_pressed("interact") and get_viewport().gui_get_focus_owner() == balloon:
+		next(dialogue_line.next_id)
+	elif event.is_action_pressed("jump") and get_viewport().gui_get_focus_owner() == balloon:
+		next(dialogue_line.next_id)

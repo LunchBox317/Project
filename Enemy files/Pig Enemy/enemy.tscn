@@ -134,7 +134,7 @@ shape = SubResource("CircleShape2D_5bgfa")
 
 [node name="MyHitBox" type="Area2D" parent="."]
 script = ExtResource("5_gh2qf")
-y_push = -100
+x_push = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MyHitBox"]
 position = Vector2(-2, 3)

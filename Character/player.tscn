@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://du733rtagwb7i"]
+[gd_scene load_steps=121 format=3 uid="uid://du733rtagwb7i"]
 
 [ext_resource type="Shader" path="res://Character/flashHit.gdshader" id="1_e8pbs"]
 [ext_resource type="Script" path="res://Character/player.gd" id="1_ttswv"]
@@ -17,8 +17,8 @@
 [ext_resource type="Script" path="res://Character/AirState.gd" id="10_8rqsa"]
 [ext_resource type="Script" path="res://Character/LandingState.gd" id="11_nmw03"]
 [ext_resource type="Script" path="res://Character/FallState.gd" id="12_v3gf4"]
-[ext_resource type="Script" path="res://Character/MyHitBox.gd" id="13_tbgye"]
-[ext_resource type="Script" path="res://Character/MyHurtBox.gd" id="14_klhmg"]
+[ext_resource type="Script" path="res://Character/MyPlayerHitBox.gd" id="19_hevln"]
+[ext_resource type="Script" path="res://Character/MyPlayerHurtBox.gd" id="19_kicqm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lj1x1"]
 shader = ExtResource("1_e8pbs")
@@ -28,6 +28,9 @@ shader_parameter/flashState = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_olx71"]
 radius = 7.77778
 height = 35.9997
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfjlx"]
+size = Vector2(15.5556, 8.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g63pl"]
 shader = ExtResource("1_e8pbs")
@@ -943,15 +946,15 @@ states/run/position = Vector2(371.333, 98.6667)
 transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_244qx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_mj56f"), "jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_s6tuc"), "jump_end", "run", SubResource("AnimationNodeStateMachineTransition_kgwd0"), "run", "attack_1", SubResource("AnimationNodeStateMachineTransition_vdyur"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_i4wyf"), "attack_2", "attack_1", SubResource("AnimationNodeStateMachineTransition_buptr"), "jump", "jump_attack", SubResource("AnimationNodeStateMachineTransition_wftnx"), "jump_attack", "jump_end", SubResource("AnimationNodeStateMachineTransition_upmfq"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_o0lmt"), "hurt", "run", SubResource("AnimationNodeStateMachineTransition_8l6yh"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_k8d6p"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_orget"), "crouch", "crouch_slash", SubResource("AnimationNodeStateMachineTransition_37cpk"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_p22ig"), "falling", "jump_end", SubResource("AnimationNodeStateMachineTransition_ninnp")]
 graph_offset = Vector2(-11, -35.444)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8n7"]
-size = Vector2(18, 47)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2bbi"]
 radius = 19.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0l5b"]
 radius = 8.0
 height = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb8n7"]
+size = Vector2(18, 47)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("guy", "animation_tree")]
 material = SubResource("ShaderMaterial_lj1x1")
@@ -967,12 +970,17 @@ scale = Vector2(0.9, 1)
 shape = SubResource("CapsuleShape2D_olx71")
 debug_color = Color(0.0980392, 0.564706, 0.854902, 0.419608)
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, 19.75)
+scale = Vector2(0.9, 1)
+shape = SubResource("RectangleShape2D_rfjlx")
+debug_color = Color(0.0980392, 0.564706, 0.854902, 0.419608)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_g63pl")
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_a2n8f")
-animation = &"crouch"
-frame = 2
+animation = &"hurt"
 offset = Vector2(9, 8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -999,7 +1007,7 @@ airState = NodePath("../Air")
 fallState = NodePath("../Falling")
 timer = NodePath("Timer")
 attack_timer = NodePath("AttackSwing")
-hit_box = NodePath("../../MyHitBox/CollisionShape2D")
+hit_box = NodePath("../../MyPlayerHitBox/CollisionShape2D")
 animation = NodePath("../../AnimatedSprite2D")
 interact_circle = NodePath("../../Interact_Circle")
 fall_timer = NodePath("../Falling/FallTimer")
@@ -1015,7 +1023,7 @@ wait_time = 2.0
 script = ExtResource("10_8rqsa")
 groundState = NodePath("../Ground")
 animation = NodePath("../../AnimatedSprite2D")
-hit_box = NodePath("../../MyHitBox/CollisionShape2D")
+hit_box = NodePath("../../MyPlayerHitBox/CollisionShape2D")
 attack_timer = NodePath("../Ground/AttackSwing")
 
 [node name="Landing" type="Node" parent="CharacterStateMachine"]
@@ -1029,16 +1037,6 @@ groundState = NodePath("../Ground")
 [node name="FallTimer" type="Timer" parent="CharacterStateMachine/Falling"]
 one_shot = true
 
-[node name="MyHitBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("13_tbgye")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHitBox"]
-position = Vector2(25, -3)
-shape = SubResource("RectangleShape2D_hb8n7")
-disabled = true
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -1051,16 +1049,25 @@ position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_u2bbi")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
-[node name="MyHurtBox" type="Area2D" parent="."]
-position = Vector2(2, 8)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("14_klhmg")
+[node name="MyPlayerHurtBox" type="Area2D" parent="."]
+script = ExtResource("19_kicqm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MyHurtBox"]
-position = Vector2(0, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyPlayerHurtBox"]
+position = Vector2(2, 7)
 shape = SubResource("CapsuleShape2D_q0l5b")
+debug_color = Color(0.690196, 0.498039, 0, 0.419608)
 
+[node name="MyPlayerHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("19_hevln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyPlayerHitBox"]
+position = Vector2(25, -3)
+shape = SubResource("RectangleShape2D_hb8n7")
+disabled = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/Ground/Timer" to="CharacterStateMachine/Ground" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Ground/Timer" to="CharacterStateMachine/Air" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Ground/AttackSwing" to="CharacterStateMachine/Ground" method="_on_attack_swing_timeout"]
@@ -1068,4 +1075,4 @@ shape = SubResource("CapsuleShape2D_q0l5b")
 [connection signal="timeout" from="CharacterStateMachine/Ground/SwingCooldown" to="CharacterStateMachine/Ground" method="_on_swing_cooldown_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Falling/FallTimer" to="CharacterStateMachine/Falling" method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="MyHurtBox" to="MyHurtBox" method="_on_area_entered"]
+[connection signal="area_entered" from="MyPlayerHurtBox" to="MyPlayerHurtBox" method="_on_area_entered"]
