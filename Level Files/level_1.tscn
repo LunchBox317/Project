@@ -3599,7 +3599,7 @@ rotation = 0.117049
 shape = SubResource("CapsuleShape2D_on3a0")
 
 [node name="Player" parent="." instance=ExtResource("2_ejid0")]
-position = Vector2(604, 228)
+position = Vector2(614, 22)
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("animation")]
 texture_filter = 2

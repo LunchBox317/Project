@@ -15,8 +15,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if not is_on_floor() and player_chase:
+		velocity.x = (player.position.x - position.x)/SPEED
 
 	if player_chase == true:
+		velocity.x = (player.position.x - position.x)/SPEED
+		
 		position.x += (player.position.x - position.x)/SPEED
 		velocity.y += gravity * delta
 		if (player.position.x - position.x) < 0:
@@ -44,12 +49,18 @@ func take_damage(amount):
 		$MyHitBox.monitoring = false
 		player_chase = false
 		$AnimatedSprite2D.play("death")
-		gravity = 0
+#		gravity = 0
+		velocity.y = 0
+		velocity.x = 0
 		$Area2D.queue_free()
 		$CollisionShape2D.disabled = true
 	
 
-
+func take_Xpush(push):
+	velocity.x = push
+		
+func take_Ypush(push):
+	velocity.y = push
 
 func _on_animated_sprite_2d_animation_finished():
 	queue_free()

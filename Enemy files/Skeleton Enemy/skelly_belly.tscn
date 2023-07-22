@@ -329,6 +329,7 @@ material = SubResource("ShaderMaterial_xfrj8")
 script = ExtResource("1_psasi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_5ge71")
 sprite_frames = SubResource("SpriteFrames_ugi17")
 animation = &"death"
